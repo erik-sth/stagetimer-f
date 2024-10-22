@@ -39,7 +39,9 @@ const Viewer = () => {
 
 		return (
 			<span>
-				<span>{negativePrefix}</span>
+				<span className={isNegative || seconds < 61 ? 'red' : ''}>
+					{negativePrefix}
+				</span>
 				{formattedHours && <span>{formattedHours}:</span>}
 				<span>{formattedMinutes}:</span>
 				<span>{formattedSeconds}</span>

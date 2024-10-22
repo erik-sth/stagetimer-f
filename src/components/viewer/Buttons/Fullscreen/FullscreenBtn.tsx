@@ -18,12 +18,18 @@ const FullscreenBtn = () => {
 		<>
 			{fullscreen ? (
 				<img
+					className='icon'
 					onClick={deactivateFullscreen}
 					src={FullscreenExitIcon}
 					alt=''
 				/>
 			) : (
-				<img onClick={activateFullscreen} src={FullscreenIcon} alt='' />
+				<img
+					className='icon'
+					onClick={activateFullscreen}
+					src={FullscreenIcon}
+					alt=''
+				/>
 			)}
 		</>
 	);

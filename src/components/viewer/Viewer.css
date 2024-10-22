@@ -1,0 +1,40 @@
+/* Fullscreen layout */
+html,
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #111;
+}
+
+.viewer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	height: 100%;
+	width: 100%;
+	color: white;
+	font-family: 'IBM Plex Mono', monospace;
+}
+
+.headerText {
+	font-size: 3vw; /* Responsive font size */
+	color: #00aaff; /* Optional: Color similar to your image */
+	margin-bottom: 2vh;
+}
+
+.countdown {
+	font-size: 20vw; /* Extremely large font for the countdown */
+	font-weight: bold;
+}
+
+.currentTime {
+	font-size: 10vw; /* Large font for current time */
+	margin-top: 2vh;
+}

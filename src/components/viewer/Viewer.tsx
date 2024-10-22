@@ -20,11 +20,13 @@ const Viewer = () => {
 		};
 	}, []);
 
-	// Format countdown dynamically based on hours, minutes, seconds
 	const formatCountdown = (seconds: number) => {
-		const hours = Math.floor(seconds / 3600);
-		const minutes = Math.floor((seconds % 3600) / 60);
-		const remainingSeconds = seconds % 60;
+		const isNegative = seconds < 0;
+
+		const absoluteSeconds = Math.abs(seconds);
+		const hours = Math.floor(absoluteSeconds / 3600);
+		const minutes = Math.floor((absoluteSeconds % 3600) / 60);
+		const remainingSeconds = absoluteSeconds % 60;
 
 		const formattedHours = hours > 0 ? `${hours.toString()}` : '';
 		const formattedMinutes =
@@ -33,14 +35,15 @@ const Viewer = () => {
 				: '0';
 		const formattedSeconds = remainingSeconds.toString().padStart(2, '0');
 
+		const negativePrefix = isNegative ? '-' : '';
+
 		return (
-			<>
-				{formattedHours && <span>{formattedHours}</span>}
-				{formattedHours && formattedMinutes && <span>:</span>}
-				{formattedHours && <span>:</span>}
+			<span>
+				<span>{negativePrefix}</span>
+				{formattedHours && <span>{formattedHours}:</span>}
 				<span>{formattedMinutes}:</span>
 				<span>{formattedSeconds}</span>
-			</>
+			</span>
 		);
 	};
 

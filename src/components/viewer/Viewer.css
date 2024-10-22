@@ -41,3 +41,48 @@ body {
 .red {
 	color: red;
 }
+
+.mirror-y {
+	-moz-transform: scale(-1, 1);
+	-webkit-transform: scale(-1, 1);
+	-o-transform: scale(-1, 1);
+	-ms-transform: scale(-1, 1);
+	transform: scale(-1, 1);
+}
+.mirror-x {
+	-moz-transform: scale(1, -1);
+	-webkit-transform: scale(1, -1);
+	-o-transform: scale(1, -1);
+	-ms-transform: scale(1, -1);
+	transform: scale(1, -1);
+}
+.mirror-y.mirror-x {
+	-moz-transform: scale(-1, -1); /* Flip both */
+	-webkit-transform: scale(-1, -1); /* Flip both */
+	-o-transform: scale(-1, -1); /* Flip both */
+	-ms-transform: scale(-1, -1); /* Flip both */
+	transform: scale(-1, -1); /* Flip both */
+}
+.buttons {
+	position: absolute;
+	right: 20px;
+	top: 20px;
+}
+.icon {
+	background-color: rgb(17, 17, 17);
+	border: 0.5px solid grey;
+	border-radius: 10%;
+	margin: 5px;
+	max-width: 25px;
+	max-height: 25px;
+}
+.icon:hover {
+	border-color: white;
+}
+.rotate90 {
+	transform: rotate(270deg); /* Rotate 360 degrees */
+}
+.buttons {
+	display: flex;
+	justify-content: center;
+}

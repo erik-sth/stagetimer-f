@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import './Viewer.css'; // Make sure the path matches your project structure
+import FullscreenBtn from './Buttons/Fullscreen/FullscreenBtn';
+import MirrorBtn from './Buttons/Mirror/MirrorBtn';
 
 const Viewer = () => {
 	const [time, setTime] = useState(new Date());
@@ -38,10 +40,8 @@ const Viewer = () => {
 		const negativePrefix = isNegative ? '-' : '';
 
 		return (
-			<span>
-				<span className={isNegative || seconds < 61 ? 'red' : ''}>
-					{negativePrefix}
-				</span>
+			<span className={isNegative || seconds < 61 ? 'red' : ''}>
+				<span>{negativePrefix}</span>
 				{formattedHours && <span>{formattedHours}:</span>}
 				<span>{formattedMinutes}:</span>
 				<span>{formattedSeconds}</span>
@@ -50,14 +50,20 @@ const Viewer = () => {
 	};
 
 	return (
-		<div className='viewer'>
-			{/* "Begins in..." text */}
-			<div className='headerText'>Begins in...</div>
-			{/* Countdown Timer */}
-			<div className='countdown'>{formatCountdown(timer)}</div>
-			{/* Current Time */}
-			<div className='currentTime'>{time.toLocaleTimeString()}</div>
-		</div>
+		<>
+			<div className='viewer'>
+				<div className='buttons'>
+					<MirrorBtn />
+					<FullscreenBtn />
+				</div>
+				{/* "Begins in..." text */}
+				<div className='headerText'>Begins in...</div>
+				{/* Countdown Timer */}
+				<div className='countdown'>{formatCountdown(timer)}</div>
+				{/* Current Time */}
+				<div className='currentTime'>{time.toLocaleTimeString()}</div>
+			</div>
+		</>
 	);
 };
 

@@ -4,7 +4,7 @@ import Viewer from './components/Viewer/Viewer';
 function App() {
 	return (
 		<>
-			<Viewer />
+			<Viewer showClock={true} />
 		</>
 	);
 }

@@ -3,7 +3,11 @@ import './Viewer.css'; // Make sure the path matches your project structure
 import FullscreenBtn from '../Buttons/Fullscreen/FullscreenBtn';
 import MirrorBtn from '../Buttons/Mirror/MirrorBtn';
 
-const Viewer = () => {
+interface Props {
+	showClock: boolean;
+}
+
+const Viewer = ({ showClock }: Props) => {
 	const [time, setTime] = useState(new Date());
 	const [timer, setTimer] = useState(65); // 2 hours in seconds
 
@@ -61,7 +65,11 @@ const Viewer = () => {
 				{/* Countdown Timer */}
 				<div className='countdown'>{formatCountdown(timer)}</div>
 				{/* Current Time */}
-				<div className='currentTime'>{time.toLocaleTimeString()}</div>
+				{showClock && (
+					<div className='currentTime'>
+						{time.toLocaleTimeString()}
+					</div>
+				)}
 			</div>
 		</>
 	);

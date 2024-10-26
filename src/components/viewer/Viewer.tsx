@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './Viewer.css'; // Make sure the path matches your project structure
-import FullscreenBtn from './Buttons/Fullscreen/FullscreenBtn';
-import MirrorBtn from './Buttons/Mirror/MirrorBtn';
+import FullscreenBtn from '../Buttons/Fullscreen/FullscreenBtn';
+import MirrorBtn from '../Buttons/Mirror/MirrorBtn';
 
 const Viewer = () => {
 	const [time, setTime] = useState(new Date());

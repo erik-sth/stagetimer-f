@@ -11,7 +11,7 @@ interface Props {
   endTime: Date;
   countUp: boolean; // true => countup; false => countdown
   previousTimer: number;
-  headerText: String;
+  headerText: string;
   followTimer: boolean; // true => follows Timer; false => follows Date
 }
 
@@ -26,59 +26,42 @@ const Viewer = ({
   followTimer,
   endTime,
 }: Props) => {
-  const [time, setTime] = useState(new Date());
-  const [timer, setTimer] = useState(() => calculateStartTime()); // 2 hours in seconds
+  const [time, setTime] = useState<Date>(new Date());
+  const [timer, setTimer] = useState<number>(() => calculateStartTime()); // 2 hours in seconds
 
   useEffect(() => {
-    const timeId = setInterval(() => {
+    const intervalId = setInterval(() => {
       setTime(new Date());
-    }, 1000);
 
-    const countdownId = setInterval(() => {
-      if (state == "Ticking") {
-        if (countUp == false) {
-          setTimer((prevTimer) => prevTimer - 1);
-        } else {
-          setTimer((prevTimer) => prevTimer + 1);
-        }
+      if (state === "Ticking") {
+        setTimer((prevTimer) => (countUp ? prevTimer + 1 : prevTimer - 1));
       }
     }, 1000);
 
-    return () => {
-      clearInterval(timeId);
-      clearInterval(countdownId);
-    };
-  }, []);
+    return () => clearInterval(intervalId);
+  }, [state, countUp]);
 
   useEffect(() => {
     if (state == "Stopped") {
       setTimer(previousTimer);
     }
-  }, [state]);
+  }, [state, previousTimer]);
 
-  useEffect(() => {
-    console.log(timer);
-  }, [timer]);
-
-  function calculateStartTime() {
-    if (followTimer && countUp) {
-      return 0; // Count up starting from 0 when followTimer is true
-    } else if (!followTimer && countUp) {
-      // Calculate time difference using getTime() to ensure arithmetic is valid
-      return Math.floor((new Date().getTime() - startTime.getTime()) / 1000);
-    } else if (!followTimer && !countUp) {
-      // Handle followTimer == true and countUp == false case (countdown with followTimer)
-      const now = new Date();
-      return Math.floor((endTime.getTime() - now.getTime()) / 1000);
-    }
-
+  function calculateStartTime():number {
+    let output:number;
     const now = new Date();
-    // Difference in seconds
-    const elapsedSeconds = Math.floor(
-      (now.getTime() - startTime.getTime()) / 1000
-    );
 
-    return remainingTimer - elapsedSeconds;
+    if (followTimer && countUp) {
+      output = 0;
+    } else if (!followTimer && countUp) {
+      output = (new Date().getTime() - startTime.getTime()) / 1000;
+    } else if (!followTimer && !countUp) {
+      output = (endTime.getTime() - now.getTime()) / 1000;
+    } else {
+      const elapsedSeconds = (now.getTime() - startTime.getTime()) / 1000;
+      output = remainingTimer - elapsedSeconds;
+    }
+    return Math.floor(output);
   }
 
   const formatCountdown = (seconds: number) => {

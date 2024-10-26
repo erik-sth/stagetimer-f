@@ -1,5 +1,6 @@
-import React from 'react';
-
+interface Timer {
+     
+}
 const Dashboard = () => {
 	return <div>Dashboard</div>;
 };
